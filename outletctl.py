@@ -224,6 +224,9 @@ def main():
                     status = 'on' if ctl.is_on(i) else 'off'
                     group = ctl.get_group(i)
                     print(f'{i}: {status:<3} (group: {group})')
+    except KeyboardInterrupt:
+        print()
+        return 1
     except Exception as e:
         print('error: %s' % e, file=sys.stderr)
         return 1
@@ -232,4 +235,7 @@ def main():
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        pass
